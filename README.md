@@ -47,7 +47,7 @@ in this repository.
  1) [osmium tools](https://github.com/waelhammoudeh/osmium-tool_slackbuild)
  2) The [getdiff program](https://github.com/waelhammoudeh/getdiff) to download change files.
  3) Web browser (like Google Chrome or Mozilla Firefox)
- 4) Poly file for your region extract; many available from [Geofabrik.de](https://download.geofabrik.de/) website.
+ 4) Poly file for your region extract; many are available from [Geofabrik.de](https://download.geofabrik.de/) website.
 
  Two bash scripts are provided in the "scripts" directory on this repository.
 
