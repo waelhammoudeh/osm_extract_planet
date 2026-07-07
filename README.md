@@ -189,7 +189,7 @@ Here is that file contents:
 timestamp=2026-06-30T20\:21\:26Z
 sequenceNumber=4833
 ```
-
+Note the first line with minutely sequence number, this is on planet change file.
 On "planet.osm.org/replication/minute" website we locate file with sequence number
 7179408, then move to file just **AFTER** it - we were looking at last included
 data in our extract file, looking in the next "state.txt" file we get sequece
@@ -214,7 +214,7 @@ to locate change files by given "Timestamp" in our table above for "begin" which
 2026-06-30 21:00, from the root page we click on the only directory listed as "000/"
 on the next page we find the closest "Last modified" time to our timestamp - in
 recent directories since our timestamp is recent - we find "2026-07-02 22:02" is the
-closest - second from top 'today' - for directory listed as "120/", we click on that
+closest - second from top 'as of this writing' - for directory listed as "120/", we click on that
 and see a list of 1000 files! To find your file fast use your keyboard type "Ctl F"
 then in the search box start typing our timestamp ... on Firefox I typed "2026-06"
 and it scrolled up the page to where I can spot 2026-06-30 23:02 to 2026-06-30 15:02,
