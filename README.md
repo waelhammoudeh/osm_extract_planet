@@ -189,9 +189,9 @@ Here is that file contents:
 timestamp=2026-06-30T20\:21\:26Z
 sequenceNumber=4833
 ```
-Note the first line with minutely sequence number, this is on planet change file.
-On "planet.osm.org/replication/minute" website we locate file with sequence number
-7179408, then move to file just **AFTER** it - we were looking at last included
+Note the first line with minutely sequence number 7179408, this is on planet OSM
+site. On "planet.osm.org/replication/minute" website we locate file with sequence
+number 7179408, then move to file just **AFTER** it - we were looking at last included
 data in our extract file, looking in the next "state.txt" file we get sequece
 number 7179409 as our value for minutes "begin"; while on that page we scroll up
 to reach next hour for minute "end" at time 21:00 per our table, then look inside
@@ -278,30 +278,33 @@ in "Requirements" section above "{HOME}/extract_planet" directory:
 
 download minutely change files with the following command (broken into lines for reading):
 ```
- wael@regrets:~/extract_planet$ getdiff -c getdiff/getdiff.conf                      \
-                                        -s https://planet.osm.org/replication/minute \
-                                        -b 7179409                                   \
-                                        -e 7179446
+ wael@regrets:~/extract_planet$ getdiff
+                                -c getdiff/getdiff.conf                      \
+                                -s https://planet.osm.org/replication/minute \
+                                -b 7179409                                   \
+                                -e 7179446
 ```
 
 you may / should inspect "rangeList.txt" file and look into "getdiff.log" file.
 
 download hourly change files with:
 ```
- wael@regrets:~/extract_planet$ getdiff -c getdiff/getdiff.conf                     \
-                                         -s https://planet.osm.org/replication/hour \
-                                         -b 120951                                  \
-                                         -e 120953
+ wael@regrets:~/extract_planet$ getdiff
+                               -c getdiff/getdiff.conf                    \
+                               -s https://planet.osm.org/replication/hour \
+                               -b 120951                                  \
+                               -e 120953
 ```
 
 newly downloaded filenames are appended to the same "rangeList.txt", check it out.
 
 download the one daily change file with:
 ```
- wael@regrets:~/extract_planet$ getdiff -c getdiff/getdiff.conf                   \
-                                        -s https://planet.osm.org/replication/day \
-                                        -b 5041                                   \
-                                        -e 5041
+ wael@regrets:~/extract_planet$ getdiff
+                                -c getdiff/getdiff.conf                   \
+                                -s https://planet.osm.org/replication/day \
+                                -b 5041                                   \
+                                -e 5041
 ```
 
 note that we used the same sequence number for "begin" and "end" options.
@@ -572,7 +575,7 @@ List produced by the above command (executed on July 6th/2026) is shown below:
 /000/005/045.state.txt
 ```
 
-An example for produced "state.txt" file (045.state.txt) file:
+An example for produced "state.txt" file shows (045.state.txt) file above:
 ```
 # Mon Jul  6 08:15:06 UTC 2026, Arizona region OSC. Original planet daily OSC sequence number 5045
 sequenceNumber=5045
