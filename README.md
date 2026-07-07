@@ -239,7 +239,7 @@ days old, I will add one daily change file to be included in the data file. So w
 continue from last included timestamp, I need the planet daily change file that
 ends on July 2nd at midnight. Locating that change file on planet daily replication
 website I get sequece number 5041; using this as "begin" and "end" sequence number
-and updating my table for that results in shown below:
+and updating my table for that results in the table shown below:
 
 ```
             begin Timestamp      begin Seq Num   end Seq Num    end Timestamp
@@ -263,9 +263,9 @@ VERBOSE=on
 
 we call `getdiff` three times - once for each time period in our table - passing
 it the above configuration file with `-c` option; with this configuration, program
-saves downloaded change files to "{HOME}/extract_planet/getdiff/planet/" directory
-and writes its log file to "{HOME}/extract_planet/logs/getdiff.log". The program
-appends downloaded filenames to "rangeList.txt" file in "HOME}/extract_planet/getdiff"
+saves downloaded change files to "{YOUR-HOME-DIR}/extract_planet/getdiff/planet/" directory
+and writes its log file to "{YOUR-HOME-DIR}/extract_planet/logs/getdiff.log". The program
+appends downloaded filenames to "rangeList.txt" file in "{YOUR-HOME-DIR}/extract_planet/getdiff"
 directory.
 
 For each call we change the `-s` for source URL, the `-b` and `-e` for begin and
@@ -276,23 +276,32 @@ in "Requirements" section above "{HOME}/extract_planet" directory:
   ~$ cd {HOME}/extract_planet
 ```
 
-download minutely change files with the following command:
+download minutely change files with the following command (broken into lines for reading):
 ```
- wael@regrets:~/extract_planet$ getdiff -c getdiff/getdiff.conf -s https://planet.osm.org/replication/minute -b 7179409 -e 7179446
+ wael@regrets:~/extract_planet$ getdiff -c getdiff/getdiff.conf                      \
+                                        -s https://planet.osm.org/replication/minute \
+                                        -b 7179409                                   \
+                                        -e 7179446
 ```
 
 you may / should inspect "rangeList.txt" file and look into "getdiff.log" file.
 
 download hourly change files with:
 ```
- wael@regrets:~/extract_planet$ getdiff -c getdiff/getdiff.conf -s https://planet.osm.org/replication/hour -b 120951 -e 120953
+ wael@regrets:~/extract_planet$ getdiff -c getdiff/getdiff.conf                     \
+                                         -s https://planet.osm.org/replication/hour \
+                                         -b 120951                                  \
+                                         -e 120953
 ```
 
 newly downloaded filenames are appended to the same "rangeList.txt", check it out.
 
 download the one daily change file with:
 ```
- wael@regrets:~/extract_planet$ getdiff -c getdiff/getdiff.conf -s https://planet.osm.org/replication/day -b 5041 -e 5041
+ wael@regrets:~/extract_planet$ getdiff -c getdiff/getdiff.conf                   \
+                                        -s https://planet.osm.org/replication/day \
+                                        -b 5041                                   \
+                                        -e 5041
 ```
 
 note that we used the same sequence number for "begin" and "end" options.
