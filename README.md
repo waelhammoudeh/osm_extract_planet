@@ -30,15 +30,15 @@ website - and in the second step we derive a change file from the two extract da
 
 For this discussion, one should be famaliar with OSM change files and how to locate
 them on remote servers. A short discussion is **a required read** for this subject
-and is available in [changeFiles.md](changeFiles.md) file. This will be referred to
-as "introduction".
+and is available in [README.changeFiles.md](README.changeFiles.md) file. This will be
+referred to as "introduction".
 
 ---
 
 ## Introduction:
 
-Terms and definitions required for this reading are in [changeFiles.md](changeFiles.md)
-in this repository.
+Terms and definitions required for this reading are in [README.changeFiles.md](README.changeFiles.md)
+in this repository. Note this is the same file included with my `getdiff` program!
 
 ---
 
@@ -78,6 +78,10 @@ create this structure from your home directory, use the following commands:
 Copy the three scripts files from the "scripts" directory in this repository to
 "extract_planet/scripts" directory and place your region poly file in directory
 "extract_planet/region".
+
+Note to "overpass" users; this is the same file system structure created in the
+"overpass" user home directory, without the "scripts" directory, scripts themslves
+are installed by to "/usr/local/bin/" by my overpass.SlackBuild.
 
 We will write "getdiff.conf" file and copy extract data file with new formated
 name below.
@@ -575,7 +579,7 @@ List produced by the above command (executed on July 6th/2026) is shown below:
 /000/005/045.state.txt
 ```
 
-An example for produced "state.txt" file shows (045.state.txt) file above:
+An example for produced "state.txt" file shows (045.state.txt) listed above:
 ```
 # Mon Jul  6 08:15:06 UTC 2026, Arizona region OSC. Original planet daily OSC sequence number 5045
 sequenceNumber=5045
