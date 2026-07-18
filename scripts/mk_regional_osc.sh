@@ -7,37 +7,23 @@
 # Change file is the difference between 2 extract data files, so in this process
 # an updated regional extract OSM data file is produced.
 #
-# script uses "common_functions.sh" file and must be in the same directory.
+# Script file and "common_functions.sh" file must be in the same directory.
 #
 # usage: mk_regiom_osc.sh <list_file>
 # <list_file>: file with change and state.txt pair list from planet osm server.
 #
-# Filename format for input and output extract data filenames:
-#
-#   region-name_YYYY-MM-DD.osm.pbf
-#
-# Format used for input and output extract data filenames is the extract region
-# name with an appended date in the form of YYYY-MM-DD separated by an underscore
-# character followed by the file extension(s).
-#
-# Please do NOT use underscore within "region name".
-#
-
 # script requires (expect) the following file system setup:
 #
-# /var/lib/overpass   {for overpass user or}
-# extract_planet      {for others}
-#           |
+# /var/lib/overpass
 #           |---getdiff
 #           |---scripts
 #           |---logs
-#           |---tmp
 #           |---region
 #                   |---extract
 #                   |---replication
-#                   |-target.name
-#                   |-poly_file
-#                   |-oscList.txt  ---> output file
+#                   |target.name
+#                   |poly_file
+#                   |oscList.txt  ---> output file
 #
 # Script uses the following files from directories specified:
 #
@@ -118,11 +104,17 @@ planetDir=$getdiffDir/planet/day
 tmpDir=$(mktemp -d /tmp/mk_oscXXXXXX)
 
 # TMP is required to be defined by common_functions.sh script
-TMP=$opDir/tmp
+# TMP=$opDir/tmp
+TMP=$tmpDir
 
 logDir=$opDir/logs
 
 execDir=/usr/local/bin
+
+
+if [[ -s "/etc/overpass.conf" ]]; then
+    source /etc/overpass.conf
+fi
 
 # files:
 
@@ -179,6 +171,11 @@ log " Output settings in use:"
 log "  extract directory: $extractDir"
 log "  change and state files (region): $replicationDir"
 log "  oscList.txt file directory: $regionDir"
+log ""
+
+log " polyFileName in use is: $polyFileName"
+log " regionName in use is: $regionName"
+log " planetDir is use is: $planetDir"
 log ""
 
 chk_directories $opDir $regionDir $extractDir $replicationDir \
@@ -371,8 +368,26 @@ while [[ $length -gt $i ]]; do
     # write state.txt file
     cp $currentStateFile $newStateFile
 
+    dir=$(basename $planetDir)
+
+    case "$dir" in
+    "day")
+        granularity="daily"
+        ;;
+    "hour")
+        granularity="hourly"
+        ;;
+    "minute")
+        granularity="minutely"
+        ;;
+    *)
+        granularity="" # "default_fallback"
+        ;;
+    esac
+
+
     # replace first line in new state.txt file (header)
-    myHeader="# $(date -u), $regionName region OSC. Original planet daily OSC sequence number $sequenceNum"
+    myHeader="# $(date -u), $regionName region OSC. Original planet $granularity sequence number $sequenceNum"
 
     # Replace first line with new header
     sed -i "1s|.*|$myHeader|" "$newStateFile"

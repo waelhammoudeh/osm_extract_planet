@@ -10,30 +10,23 @@
 #   <poly_file>: region polygon (.poly) file, available from Geofabrik site.
 #   <list_file>: range list file "rangeList.txt" produced by getdiff.
 #
-# script uses "common_functions.sh" file and must be in the same directory.
+# The script writes the new produced OSM data file to region/extract/
+# (directory must exist) using input <data_file> name with appended date
+# from last state.txt file timestamp date part in the rangeList.txt file
+# separated by an underscore character resulting in name format below:
 #
-# The script writes the new produced OSM extract data file to "region/extract/"
-# directory which must exist.
+#   original-name_YYYY-MM-DD.osm.pbf
 #
-# Filename format for input and output extract data filenames:
+# input file name should follow this naming format with underscore between
+# name and date part ONLY.
+# Please do not use underscore in original data file name.):-
 #
-#   region-name_YYYY-MM-DD.osm.pbf
-#
-# Format used for input and output extract data filenames is the extract region
-# name with an appended date in the form of YYYY-MM-DD separated by an underscore
-# character followed by the file extension(s).
-#
-# Please do NOT use underscore within "region name".
-#
-# script write its progress standard output and to logs/extract2planet.log file
-#
+# script write its progress to logs/extract2planet.log file
 # script uses "osmium" to accomplish its work.
 #
 # script assumes the following file system structure:
 #
-#   /var/lib/overpass   {for overpass user or}
-#   extract_planet      {for others}
-#       |
+#   extract_planet
 #       ├── getdiff
 #       ├── logs
 #       ├── scripts
@@ -43,7 +36,6 @@
 #       │   ├── arizona.poly
 #       |   └── region-extract_YYYY-MM-DD.osm.pbf
 #       └── tmp
-#
 #
 # There is no guarantee that this is accurate. USE AT YOUR OWN RISK.
 #
